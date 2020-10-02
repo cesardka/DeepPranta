@@ -77,7 +77,7 @@ def make_model():
     model.add(keras.Input(shape=input_shape))
     model.add(layers.experimental.preprocessing.Rescaling(1./255))
     # convolutional layer
-    model.add(Conv2D(32, kernel_size=(3,3), strides=(1,1), padding='same'))
+    model.add(Conv2D(16, kernel_size=(3,3), strides=(1,1), padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
@@ -95,19 +95,11 @@ def make_model():
     model.add(Conv2D(64, kernel_size=(3,3), strides=(1,1), padding='same'))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2,2)))
-
-    # model.add(SeparableConv2D(64, kernel_size=(3,3), strides=(1,1), padding='same'))
-    # model.add(Activation('relu'))
-    # model.add(MaxPooling2D(pool_size=(2,2)))
-
-    # model.add(SeparableConv2D(64, kernel_size=(3,3), strides=(1,1), padding='same'))
-    # model.add(Activation('relu'))
-    # model.add(MaxPooling2D(pool_size=(2,2)))
     
 
-    model.add(SeparableConv2D(1024, kernel_size=(3,3), strides=(1,1), padding='same'))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
+    # model.add(SeparableConv2D(1024, kernel_size=(3,3), strides=(1,1), padding='same'))
+    # model.add(BatchNormalization())
+    # model.add(Activation('relu'))
 
 
     
@@ -186,7 +178,7 @@ plot_model( model,
     dpi=96,)
 model.compile(
     optimizer=optimizer,
-    loss="binary_crossentropy",
+    loss="categorical_crossentropy",
     metrics=["accuracy"],
 )
 
